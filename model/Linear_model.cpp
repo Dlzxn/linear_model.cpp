@@ -10,7 +10,7 @@ LinearModel::LinearModel(int num_features) {
     random_device rd;
     mt19937 gen(rd());
     uniform_real_distribution<float> dis(-0.5f, 0.5f);
-    this->weights.assign(num_features, dis(gen));
+    this->weights.assign(num_features + 1, dis(gen));
 }
 
 float LinearModel::predict(const vector<float>& values) {
@@ -24,9 +24,10 @@ float LinearModel::predict(const vector<float>& values) {
 
 vector<float> LinearModel::backprop(float diff) {
     vector<float> grad_vector(this->weights.size());
-    for (int i = 0; i<grad_vector.size(); i++) {
+    for (int i = 0; i<grad_vector.size()-1; i++) {
         grad_vector[i] = 2*diff*this->last_input[i];
     }
+    grad_vector[grad_vector.size() - 1] = 2*diff;
     return grad_vector;
 }
 
