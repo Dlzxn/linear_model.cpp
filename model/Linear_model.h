@@ -11,6 +11,8 @@ public:
     vector<float> weights;
     float predict(const vector<float>& values);
     LinearModel(const int num_features);
+    vector<float> backprop();
+    vector<float>& get_weights();
 };
 
 #endif

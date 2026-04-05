@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 LinearModel::LinearModel(int num_features) {
     this->weights.assign(num_features, 0.0f);
 }
@@ -13,5 +14,13 @@ float LinearModel::predict(const vector<float>& values) {
     for (size_t i = 0; i < values.size(); i++) {
         sum += (values[i] * weights[i]);
     }
-    return sum;
+    return sum + weights.back();
+}
+
+vector<float> LinearModel::backprop() {
+    return this->weights;
+}
+
+vector<float>& LinearModel::get_weights() {
+    return this->weights;
 }
