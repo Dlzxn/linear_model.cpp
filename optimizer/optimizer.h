@@ -10,7 +10,7 @@ class Optimizer {
     float lr;
     vector<float>& weights;
     Optimizer(float lr, vector<float>& weights);
-    void step(float loss, vector<float> grad);
+    void step(vector<float> grad);
 };
 
 #endif
